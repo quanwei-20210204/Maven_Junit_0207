@@ -8,14 +8,22 @@ public class HelloSAP {
     public static void main(String[] args){
 
         HelloSAP hsap = new HelloSAP();
-        hsap.hello_world();
+        hsap.hello_world(-1);
 
     }
 
-    public Collection<String> hello_world(){ //return value will be the result;
-        //task 2-2, print number from 1 to 100, when meet 3 and 3*n, print "fizz", 5 and 5*n, print "buzz"
+    public  Collection<String> hello_world(){
+        return hello_world(100);
+    }
 
-        for (int i = 1; i <= 100; i++){
+    public Collection<String> hello_world(int number){ //return value will be the result;
+        //task 2-2, print number from 1 to 100, when meet 3 and 3*n, print "fizz", 5 and 5*n, print "buzz"
+        //task 2-4, one parameter for hello_world(), means the top value for the times we print;  check the parameter
+        if(number < 0) {
+            throw new ArithmeticException("the number should be positive.");
+        }
+
+        for (int i = 1; i <= number; i++){
 
             if(i % 3 == 0) {
                 collection.add("fizz");
