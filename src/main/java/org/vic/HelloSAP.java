@@ -8,7 +8,7 @@ public class HelloSAP {
     public static void main(String[] args){
 
         HelloSAP hsap = new HelloSAP();
-        hsap.hello_world(-1);
+        hsap.hello_world(10);
 
     }
 
@@ -24,6 +24,19 @@ public class HelloSAP {
         }
 
         for (int i = 1; i <= number; i++){
+
+            //task 2-5: command line prompt:
+            System.out.println("please input your answer:");
+            Scanner scanner = new Scanner(System.in);
+            String input = scanner.next();
+
+            //task 2-5: if input is right, the game moves on, or the game ends.
+            if(input.equals(Integer.toString(i))){
+                System.out.println("right, move on");
+            }else{
+                System.out.println("wrong answer");
+                return null;
+            }
 
             if(i % 3 == 0) {
                 collection.add("fizz");
