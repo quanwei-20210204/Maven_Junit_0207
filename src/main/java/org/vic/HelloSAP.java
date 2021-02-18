@@ -8,15 +8,19 @@ public class HelloSAP {
     public static void main(String[] args){
 
         HelloSAP hsap = new HelloSAP();
-        hsap.hello_world(10,7);
+        hsap.hello_world('a',20,7);
+        hsap.hello_world(20,7);
 
     }
 
     public  Collection<String> hello_world(){
-        return hello_world(100,9);
+        return hello_world('a',100,9);
     }
 
-    public Collection<String> hello_world(int number,int players){ //return value will be the result;
+    public Collection<String> hello_world(int number, int players){
+        return hello_world('x', number, players);
+    }
+    public Collection<String> hello_world(char a, int number, int players){ //return value will be the result;
         //task 2-2, print number from 1 to 100, when meet 3 and 3*n, print "fizz", 5 and 5*n, print "buzz"
         //task 2-4, one parameter for hello_world(), means the top value for the times we print;  check the parameter
         if(number < 0) {
@@ -28,9 +32,13 @@ public class HelloSAP {
         int myposition = random.nextInt(players)+1;
         System.out.println(myposition);
 
-        for (int i = 1; i <= number; i++){
 
-            //task 2-5: command line prompt:
+        //2-7 one more parameter for option: if there's a parameter -a, the game rule will be changed to 3*n || include 3
+        if (a == 'a'){
+
+            for (int i = 1; i <= number; i++){
+
+                //task 2-5: command line prompt:
            /* System.out.println("please input your answer:");
             Scanner scanner = new Scanner(System.in);
             String input = scanner.next();
@@ -43,24 +51,47 @@ public class HelloSAP {
                 return null;
             }*/
 
-            if(i % 3 == 0) {
-                collection.add("fizz");
-                //System.out.println("fizz");
-            } else if(i % 5 == 0) {
-                collection.add("buzz");
-                //System.out.println("buzz");
-            } else{
-                collection.add(Integer.toString(i));
-                //System.out.println(i);
+                //2-7 check if the number is 3*n or include 3;
+                if((i % 3 == 0)||(i/10 == 3) || (i % 10 == 3)) {
+                    collection.add("fizz");
+                    //System.out.println("fizz");
+                } else if((i % 5 == 0)||( i/10 == 5)||( i%10 == 5)) {
+                    collection.add("buzz");
+                    //System.out.println("buzz");
+                } else{
+                    collection.add(Integer.toString(i));
+                    //System.out.println(i);
+                }
+
             }
 
+            for(String i: collection){
+                System.out.println(i);
+            }
+
+            return collection;
+        } else {
+            for (int i = 1; i <= number; i++){
+                if(i % 3 == 0) {
+                    collection.add("fizz");
+                    //System.out.println("fizz");
+                } else if(i % 5 == 0) {
+                    collection.add("buzz");
+                    //System.out.println("buzz");
+                } else{
+                    collection.add(Integer.toString(i));
+                    //System.out.println(i);
+                }
+
+            }
+
+            for(String i: collection){
+                System.out.println(i);
+            }
+
+            return collection;
         }
 
-        /*for(String i: collection){
-            System.out.println(i);
-        }*/
-
-        return collection;
         //System.out.println("Hello World!");
         //System.out.println(new Date());
     }
