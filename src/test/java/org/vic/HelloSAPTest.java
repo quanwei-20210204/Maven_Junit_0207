@@ -11,9 +11,8 @@ import java.util.Collection;
 
 //task 2-3, unit test for class HelloSAP, only one method
 public class HelloSAPTest extends TestCase {
-    Collection<String> collectionTest = new ArrayList<String>();
 
-    private static HelloSAP h=new HelloSAP();
+    public HelloSAP helloSAP = new HelloSAP();
 
     @Before
     public void setUp() throws Exception {
@@ -27,21 +26,12 @@ public class HelloSAPTest extends TestCase {
     }
 
     @Test
-    public void testHello_world() {
+    public void testCountOff() {
 
-        int i = 0;
-        while(i <= 100){
+        helloSAP.countOff(); // call the method countOff()
+        helloSAP.resultSize();  // check the size of the result
+        System.out.println("the result contains 3 is "+ helloSAP.ifContains("3")); //check if the result contains special number;
+        helloSAP.showResult();
 
-            switch(++i % 3 ){
-                case 0:
-                    collectionTest.add("fizz");  break;
-                default:
-                    collectionTest.add(Integer.toString(i));  break;
-            }
-
-        }
-        //collectionTest.add("buzz");
-        //h.hello_world();
-        Assert.assertEquals(collectionTest,h.hello_world());
     }
 }
