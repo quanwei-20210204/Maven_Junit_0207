@@ -5,14 +5,20 @@ import java.util.*;
 public class HelloSAP {
     private Collection<String> collection = new ArrayList<String>();
 
+    //Comments from Vic: main method for View -- the input and output, and present
     public static void main(String[] args){
-
-        HelloSAP hsap = new HelloSAP();
-        hsap.hello_world('a',20,7);
-        hsap.hello_world(20,7);
 
     }
 
+    // Method name: countOff
+
+    //Model or the logic is separated from View, in order to divide into two parts.
+
+
+    /*
+        HelloSAP hsap = new HelloSAP();
+        hsap.hello_world('a',20,7);
+        hsap.hello_world(20,7);
     public  Collection<String> hello_world(){
         return hello_world('a',100,9);
     }
@@ -34,12 +40,13 @@ public class HelloSAP {
 
 
         //2-7 one more parameter for option: if there's a parameter -a, the game rule will be changed to 3*n || include 3
+        // Comments from Vic: refactoring (restructure), to reduce duplicated code  (repetition)
         if (a == 'a'){
 
             for (int i = 1; i <= number; i++){
 
-                //task 2-5: command line prompt:
-           /* System.out.println("please input your answer:");
+            //task 2-5: command line prompt:
+            System.out.println("please input your answer:");
             Scanner scanner = new Scanner(System.in);
             String input = scanner.next();
 
@@ -49,7 +56,7 @@ public class HelloSAP {
             }else{
                 System.out.println("wrong answer");
                 return null;
-            }*/
+            }
 
                 //2-7 check if the number is 3*n or include 3;
                 if((i % 3 == 0)||(i/10 == 3) || (i % 10 == 3)) {
@@ -103,6 +110,7 @@ public class HelloSAP {
     public void setCollection(String variable){
         collection.add(variable);
     }
+     */
 
 }
 
