@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 //task 2-3, unit test for class HelloSAP, only one method
 public class HelloSAPTest extends TestCase {
@@ -28,10 +29,21 @@ public class HelloSAPTest extends TestCase {
     @Test
     public void testCountOff() {
 
-        helloSAP.countOff(); // call the method countOff()
-        helloSAP.resultSize();  // check the size of the result
-        System.out.println("the result contains 3 is "+ helloSAP.ifContains("3")); //check if the result contains special number;
-        helloSAP.showResult();
+        List<String> testOutcome = new ArrayList<>();
+
+        testOutcome = helloSAP.countOff();
+
+        Assert.assertEquals(100,testOutcome.size());
+
+        Assert.assertEquals("fizzbuzz",testOutcome.get(15-1));
 
     }
+
+    @Test
+    public void testVary() {
+
+        Assert.assertEquals("fizz",helloSAP.vary(3));
+
+    }
+
 }

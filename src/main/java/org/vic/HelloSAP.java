@@ -5,36 +5,51 @@ import java.util.*;
 //task 2-2: rewrite the task, divide the task into two parts, one is the logic, main method for present;
 public class HelloSAP {
     public static final String FIZZ = "fizz";
+    public static final String BUZZ = "buzz";
 
     //Comments from Vic: main method for View -- the input and output, and present
     public static void main(String[] args){
 
-        HelloSAP hSAP = new HelloSAP();
-        hSAP.countOff();
+        //HelloSAP hSAP = new HelloSAP();
+        //hSAP.countOff();
 
     }
 
     // Method name: countOff
-    public void countOff(){
+    public List countOff(){
         List<String>  outcome = new ArrayList<>(100);
 
         for (int i = 1; i <= 100; i++){
-
             outcome.add(vary(i));
-
         }
 
         for(String s: outcome){
             System.out.println(s);
         }
 
+        return outcome;
+
     }
 
     String vary(int i){
-        if(i % 3 == 0){
+
+        if(isDivisible(i,3)  && isDivisible(i,5)) {
+            return FIZZ+BUZZ;
+        }else if(isDivisible(i,3)){
             return FIZZ;
+        }else if(isDivisible(i,5)){
+            return BUZZ;
         }else{
             return Integer.toString(i);
+        }
+
+    }
+
+    Boolean isDivisible(int dividend,int divisor){
+        if(dividend % divisor == 0){
+            return true;
+        }else{
+            return false;
         }
     }
 
