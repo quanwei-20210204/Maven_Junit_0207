@@ -10,13 +10,13 @@ public class HelloSAP {
     //Comments from Vic: main method for View -- the input and output, and present
     public static void main(String[] args){
 
-        //HelloSAP hSAP = new HelloSAP();
-        //hSAP.countOff();
+        HelloSAP hSAP = new HelloSAP();
+        hSAP.countOff();
 
     }
 
     // Method name: countOff
-    public List countOff(){
+    public List<String> countOff(){
         List<String>  outcome = new ArrayList<>(100);
 
         for (int i = 1; i <= 100; i++){
@@ -45,7 +45,7 @@ public class HelloSAP {
 
     }
 
-    Boolean isDivisible(int dividend,int divisor){
+    boolean isDivisible(int dividend,int divisor){
         if(dividend % divisor == 0){
             return true;
         }else{
