@@ -13,14 +13,16 @@ import java.util.Collection;
 import java.util.List;
 
 //task 2-3, unit test for class HelloSAP, only one method
-@RunWith(Parameterized.class)
+//@RunWith(Parameterized.class)
 public class HelloSAPTest /*extends TestCase*/ {
 
+    public static final int TOPLIMITED = 80;
     public HelloSAP helloSAP = new HelloSAP();
 
+    /*
     @Parameterized.Parameters
     public static Collection testData(){
-        return Arrays.asList(new Object[][]{{"1",1},{"2",2},{"fizz",3}});
+        return Arrays.asList(new Object[][]{{"1",1},{"2",2},{"fizz",3},{"buzz",5}});
     }
 
 
@@ -30,6 +32,8 @@ public class HelloSAPTest /*extends TestCase*/ {
         hExpected = expected;
         hInput = input;
     }
+
+    */
 
 
     @BeforeClass
@@ -44,16 +48,18 @@ public class HelloSAPTest /*extends TestCase*/ {
         System.out.println("test ends");
     }
 
-    @Ignore
+    @Test
     public void countOff() {
 
         List<String> testOutcome = new ArrayList<>();
 
-        testOutcome = helloSAP.countOff();
+        testOutcome = helloSAP.countOff(TOPLIMITED);
+        helloSAP.showOutcome(testOutcome);
 
-        Assert.assertEquals(100,testOutcome.size());
+        Assert.assertEquals(TOPLIMITED,testOutcome.size());
 
         Assert.assertEquals("fizzbuzz",testOutcome.get(15-1));
+
 
     }
 
@@ -65,7 +71,7 @@ public class HelloSAPTest /*extends TestCase*/ {
         Assert.assertEquals("fizzbuzz",helloSAP.vary(15));
         Assert.assertEquals("7",helloSAP.vary(7));
 
-        Assert.assertEquals(hExpected,helloSAP.vary(hInput));
+        //Assert.assertEquals(hExpected,helloSAP.vary(hInput));
 
 
 

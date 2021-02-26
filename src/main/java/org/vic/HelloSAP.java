@@ -6,29 +6,56 @@ import java.util.*;
 public class HelloSAP {
     public static final String FIZZ = "fizz";
     public static final String BUZZ = "buzz";
+    public static final int TOPLIMITED = 80;
+
 
     //Comments from Vic: main method for View -- the input and output, and present
     public static void main(String[] args){
+        List<String> result;
 
         HelloSAP hSAP = new HelloSAP();
-        hSAP.countOff();
+        result = hSAP.countOff(TOPLIMITED);
+
+        hSAP.showOutcome(result);
 
     }
 
-    // Method name: countOff
-    public List<String> countOff(){
-        List<String>  outcome = new ArrayList<>(100);
-
-        for (int i = 1; i <= 100; i++){
-            outcome.add(vary(i));
-        }
-
-        for(String s: outcome){
+    void showOutcome(List<String> outcome){
+        for (String s:outcome){
             System.out.println(s);
+        }
+    }
+
+    // Method name: countOff
+    public List<String> countOff(int topLimited){
+
+        List<String> outcome = new ArrayList<>(topLimited);
+
+        try {
+            playerNumCheck(topLimited);
+
+            for (int i = 1; i <= topLimited; i++) {
+                outcome.add(vary(i));
+            }
+
+            /*for (String s : outcome) {
+                System.out.println(s);
+            }*/
+
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
         }
 
         return outcome;
 
+    }
+
+    //check the parameter of the countOff()
+    void playerNumCheck(int players) throws Exception{
+            if(players < 0){
+                throw new Exception("Players need to be a positive number.");
+            }
     }
 
     String vary(int i){
@@ -45,12 +72,15 @@ public class HelloSAP {
 
     }
 
+    //check if the dividend can be divided by divisor
     boolean isDivisible(int dividend,int divisor){
-        if(dividend % divisor == 0){
+    /*  if(dividend % divisor == 0){
             return true;
         }else{
             return false;
-        }
+        }*/
+
+        return dividend % divisor == 0;  //compliler suggests
     }
 
 
