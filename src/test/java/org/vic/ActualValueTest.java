@@ -1,9 +1,9 @@
 package org.vic;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
+import org.junit.rules.ExpectedException;
+
+import java.rmi.server.ExportException;
 
 import static org.junit.Assert.*;
 
@@ -44,4 +44,20 @@ public class ActualValueTest {
             Assert.assertTrue(e instanceof IllegalArgumentException);
         }
     }
+    @Test(expected = IllegalArgumentException.class)
+    public void need_exception_via_expected_way(){
+        ActualValue actualvalue = new ActualValue(new String[]{"piano"});
+
+    }
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+
+    @Test
+    public void need_exception_via_rule() throws IllegalArgumentException{
+        thrown.expect(IllegalArgumentException.class);
+        ActualValue actualvalue = new ActualValue(new String[]{"piano"});
+
+    }
+
+
 }
