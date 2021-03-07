@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,15 +37,26 @@ public class GameNumberOffTest {
         List<String> testOutcome = gameNumberOff.countOff(100);
         gameNumberOff.showOutcome(testOutcome);
 
-        Assert.assertEquals(TOPLIMITED,testOutcome.size());
+        //Assert.assertEquals(TOPLIMITED,testOutcome.size());
 
-        Assert.assertEquals("fizzbuzz",testOutcome.get(15-1));
+        //Assert.assertEquals("fizzbuzz",testOutcome.get(15-1));
 
     }
 
-    @Ignore
-    public void playerNumCheck() {
+    @Test
+    public void answer() {
+        GameNumberOff gameNumberOff = new GameNumberOff();
 
+        String data = "buzz";
+        String input;
+        InputStream stdin = System.in;
+        try {
+            System.setIn(new ByteArrayInputStream(data.getBytes()));
+            input = gameNumberOff.answer();
+        } finally {
+            System.setIn(stdin);
+        }
+        System.out.println("input is----" + input);
     }
 
     @Test
