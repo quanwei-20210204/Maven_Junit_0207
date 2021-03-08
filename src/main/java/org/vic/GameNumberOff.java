@@ -16,11 +16,14 @@ public class GameNumberOff {
     }
 
     public String answer(){
+        System.out.println("Please input your answer:");
         Scanner scanner = new Scanner(System.in);
         String myAnswer = scanner.nextLine();
         return myAnswer;
 
     }
+
+
     // Method name: countOff
     public List<String> countOff(int topLimited){
 
@@ -30,15 +33,12 @@ public class GameNumberOff {
 
             for (int i = 1; i <= topLimited; i++) {
 
-               /* if(i % 10 == 1){ //10 players, Suppose I'm the first one.
-                    System.out.println("Please input your answer:");
-                    Scanner scan = new Scanner(System.in);
-                    String answer = scan.nextLine();
-                    if (answer.equals(vary(i))){
+               if(i % 10 == 1){ //10 players, Suppose I'm the first one.
+                    if (!answer().equals(vary(i))){
                         outcome.add("wrong");
                         return outcome;
                     }
-                }*/
+                }
 
                 outcome.add(vary(i));
             }
