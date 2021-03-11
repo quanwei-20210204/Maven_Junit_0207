@@ -9,12 +9,6 @@ public class GameNumberOff {
     public static final String BUZZ = "buzz";
 
 
-    void showOutcome(List<String> outcome){
-        for (String s:outcome){
-            System.out.println(s);
-        }
-    }
-
     public String answer(){
         System.out.println("Please input your answer:");
         Scanner scanner = new Scanner(System.in);
@@ -40,7 +34,8 @@ public class GameNumberOff {
                     }
                 }
 
-                outcome.add(vary(i));
+               outcome.add(vary(i));
+               PrintAnswers.showCurrentResult(vary(i));
             }
 
         }

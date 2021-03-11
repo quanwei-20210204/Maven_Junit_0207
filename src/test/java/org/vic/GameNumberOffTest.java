@@ -35,7 +35,7 @@ public class GameNumberOffTest {
     public void countOff() {
         GameNumberOff gameNumberOff = new GameNumberOff();
         List<String> testOutcome = gameNumberOff.countOff(100);
-        gameNumberOff.showOutcome(testOutcome);
+        PrintAnswers.showOutcome(testOutcome);
 
         //Assert.assertEquals(TOPLIMITED,testOutcome.size());
 
