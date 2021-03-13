@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.nio.file.StandardWatchEventKinds;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,33 +37,13 @@ public class GameNumberOffTest {
         GameNumberOff gameNumberOff = new GameNumberOff();
         List<String> testOutcome = gameNumberOff.countOff(100);
         PrintAnswers.showOutcome(testOutcome);
-
-        //Assert.assertEquals(TOPLIMITED,testOutcome.size());
-
-        //Assert.assertEquals("fizzbuzz",testOutcome.get(15-1));
-
-    }
-
-    @Ignore
-    public void answer() {
-        GameNumberOff gameNumberOff = new GameNumberOff();
-
-        String data = "1";
-        String input;
-        InputStream stdin = System.in;
-        try {
-            System.setIn(new ByteArrayInputStream(data.getBytes()));
-            input = gameNumberOff.answer();
-        } finally {
-            System.setIn(stdin);
-        }
-        System.out.println("input is----" + input);
     }
 
     @Test
     public void answer_by_console(){
         GameNumberOff gameNumberOff = new GameNumberOff();
-        String input = gameNumberOff.answer();
+        TakeAnswer takeAnswer = new TakeAnswer();
+        String input = takeAnswer.answer();
         Assert.assertEquals("38",input);
     }
 
