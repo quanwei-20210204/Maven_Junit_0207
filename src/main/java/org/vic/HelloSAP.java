@@ -11,8 +11,8 @@ public class HelloSAP {
         try {
             GameNumberOff gameNumberOff = new GameNumberOff();
             ActualValue actualValue = new ActualValue(args);
-            List<String> result = gameNumberOff.countOff(actualValue.getTopLimited());
-            printResult(result);
+            List<String> result = gameNumberOff.countOff(actualValue.getTopLimited(),8);
+            //printResult(result);
         }catch (Exception e){
             System.out.println(e.getMessage()+"main()");
         }

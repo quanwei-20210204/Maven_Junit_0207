@@ -32,14 +32,27 @@ public class GameNumberOffTest {
 
     }
 
-    @Ignore
-    public void countOff() {
-        GameNumberOff gameNumberOff = new GameNumberOff();
-        List<String> testOutcome = gameNumberOff.countOff(100);
-        PrintAnswers.showOutcome(testOutcome);
+    private static ByteArrayInputStream in;
+
+    public void setInput(String input) {
+        in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
     }
 
     @Test
+    public void countOff() {
+        String data = "8\n"
+                + "fizz\n"
+                + "three\n"
+                + "four\n"
+                + "five\n";
+        setInput(data);
+        GameNumberOff gameNumberOff = new GameNumberOff();
+        List<String> testOutcome = gameNumberOff.countOff(50,8);
+        //PrintAnswers.showOutcome(testOutcome);
+    }
+
+    @Ignore
     public void answer_by_console(){
         GameNumberOff gameNumberOff = new GameNumberOff();
         TakeAnswer takeAnswer = new TakeAnswer();

@@ -2,6 +2,7 @@ package org.vic;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class GameNumberOff {
@@ -13,16 +14,18 @@ public class GameNumberOff {
 
 
     // Method name: countOff
-    public List<String> countOff(int topLimited){
+    public List<String> countOff(int topLimited, int playerNum){
         TakeAnswer takeAnswer = new TakeAnswer();
+        Random random = new Random();  //create a Random object
+        int myPosiiton = random.nextInt(playerNum);  //generate a random Integer for my position
+        System.out.println("Your position is:" + myPosiiton);
 
-        List<String> outcome = null;
+        List<String> outcome = new ArrayList<>();
+
         try {
-            outcome = new ArrayList<>(topLimited);
+               for (int i = 1; i <= topLimited; i++) {
 
-            for (int i = 1; i <= topLimited; i++) {
-
-               if(i % 10 == 1){ //10 players, Suppose I'm the first one.
+               if(i % playerNum == myPosiiton){
                     if (!takeAnswer.answer().equals(vary(i))){
                         outcome.add("wrong");
                         return outcome;
@@ -30,6 +33,7 @@ public class GameNumberOff {
                 }
 
                outcome.add(vary(i));
+
                PrintAnswers.showCurrentResult(vary(i));
             }
 
