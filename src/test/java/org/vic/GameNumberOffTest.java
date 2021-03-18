@@ -41,7 +41,7 @@ public class GameNumberOffTest {
 
     @Test
     public void countOff() {
-        String data = "8\n"
+        String data = "6\n"
                 + "fizz\n"
                 + "three\n"
                 + "four\n"
@@ -50,14 +50,6 @@ public class GameNumberOffTest {
         GameNumberOff gameNumberOff = new GameNumberOff();
         List<String> testOutcome = gameNumberOff.countOff(50,8);
         //PrintAnswers.showOutcome(testOutcome);
-    }
-
-    @Ignore
-    public void answer_by_console(){
-        GameNumberOff gameNumberOff = new GameNumberOff();
-        TakeAnswer takeAnswer = new TakeAnswer();
-        String input = takeAnswer.answer();
-        Assert.assertEquals("38",input);
     }
 
     @Ignore

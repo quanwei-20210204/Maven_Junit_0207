@@ -25,6 +25,7 @@ public class TakeAnswerTest {
         in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
     }
+
     @Test
     public void answer() {
         String data = "one\n"
@@ -36,14 +37,8 @@ public class TakeAnswerTest {
         TakeAnswer takeAnswer = new TakeAnswer();
         takeAnswer.answer();
         takeAnswer.answer();
-        takeAnswer.answer();
 
-
-        //System.setIn(stdin);
-
-
-
-        //Assert.assertEquals("three",input);
+        Assert.assertEquals("three",takeAnswer.answer());
 
     }
 

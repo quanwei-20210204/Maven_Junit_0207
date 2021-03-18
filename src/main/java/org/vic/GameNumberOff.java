@@ -9,37 +9,32 @@ public class GameNumberOff {
     public static final String FIZZ = "fizz";
     public static final String BUZZ = "buzz";
 
-
-
-
-
     // Method name: countOff
     public List<String> countOff(int topLimited, int playerNum){
         TakeAnswer takeAnswer = new TakeAnswer();
         Random random = new Random();  //create a Random object
-        int myPosiiton = random.nextInt(playerNum);  //generate a random Integer for my position
-        System.out.println("Your position is:" + myPosiiton);
+        int myPosition = random.nextInt(playerNum)+1;  //generate a random Integer for my position
+        PrintAnswers.showMyPosition(myPosition);
 
-        List<String> outcome = new ArrayList<>();
+        List<String> outcome = new ArrayList<>(topLimited);
 
         try {
                for (int i = 1; i <= topLimited; i++) {
 
-               if(i % playerNum == myPosiiton){
-                    if (!takeAnswer.answer().equals(vary(i))){
-                        outcome.add("wrong");
-                        return outcome;
+                   if(i % playerNum == myPosition){
+                        if (!takeAnswer.answer().equals(vary(i))){
+                            outcome.add("wrong");
+                            PrintAnswers.showCurrentResult("wrong");
+                            return outcome;
+                        }
                     }
-                }
 
                outcome.add(vary(i));
-
                PrintAnswers.showCurrentResult(vary(i));
             }
 
-        }
-        catch(Exception e){
-            System.out.println(e.getMessage()+"in countOff()");
+        } catch(Exception e){
+            PrintAnswers.showExceptionMessage(e,"countOff()");
         }
 
         return outcome;
