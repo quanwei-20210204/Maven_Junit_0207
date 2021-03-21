@@ -1,6 +1,5 @@
 package org.vic;
 
-import java.io.ByteArrayInputStream;
 import java.util.Scanner;
 
 public class TakeAnswer {
