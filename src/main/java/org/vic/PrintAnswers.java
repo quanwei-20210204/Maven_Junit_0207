@@ -3,6 +3,11 @@ package org.vic;
 import java.util.List;
 
 public class PrintAnswers {
+
+    public void print(String output){
+        System.out.println(output);
+    }
+
     public static void showOutcome(List<String> outcome){
         for (String s:outcome){
             System.out.println(s);
@@ -17,9 +22,6 @@ public class PrintAnswers {
         System.out.println("Your position is:" + myPosition);
     }
 
-    public static void showExceptionMessage(Exception e,String methodName){
-        System.out.println(e.getMessage()+" in " + methodName);
-    }
 
     public static void printResult(List<String> result) {
         for (String s : result) {

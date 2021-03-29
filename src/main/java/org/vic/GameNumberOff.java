@@ -8,45 +8,62 @@ import java.util.Scanner;
 public class GameNumberOff {
     public static final String FIZZ = "fizz";
     public static final String BUZZ = "buzz";
+    public static final int FIZZ_NUMBER = 3;
+    public static final int BUZZ_NUMBER = 5;
+    private PrintAnswers printAnswers = new PrintAnswers();;
+    private TakeAnswer takeAnswer = new TakeAnswer();
+    List<String> outcome;
 
     // Method name: countOff
-    public List<String> countOff(int topLimited, int playerNum){
-        TakeAnswer takeAnswer = new TakeAnswer();
-        Random random = new Random();  //create a Random object
-        int myPosition = random.nextInt(playerNum)+1;  //generate a random Integer for my position
-        PrintAnswers.showMyPosition(myPosition);
+    public void countOff(int topLimited, int playerNum){
+        MyPosition myPlace = new MyPosition(playerNum,printAnswers);
 
-        List<String> outcome = new ArrayList<>(topLimited);
+        outcome = new ArrayList<>(topLimited);
 
-        try {
-               for (int i = 1; i <= topLimited; i++) {
-
-                   if(i % playerNum == myPosition){
-                        if (!takeAnswer.answer().equals(vary(i))){
-                            outcome.add("wrong");
-                            PrintAnswers.showCurrentResult("wrong");
-                            return outcome;
-                        }
-                    }
-
-               outcome.add(vary(i));
-               PrintAnswers.showCurrentResult(vary(i));
+        for (int i = 1; i <= topLimited; i++) {
+            outcome.add(vary(i));
+            int myPosition = myPlace.getMyPosition();
+            if(isMyTurn(i,playerNum,myPosition) && notRightAnswer(vary(i))){
+                return;
             }
-
-        } catch(Exception e){
-            PrintAnswers.showExceptionMessage(e,"countOff()");
+           printAnswers.print(vary(i));
         }
 
-        return outcome;
+        return;
+    }
+
+    public  GameNumberOff(PrintAnswers printAnswers,TakeAnswer takeAnswer){
+        this.printAnswers = printAnswers;
+        this.takeAnswer = takeAnswer;
+    }
+
+    boolean isMyTurn(int i, int playerNum, int myPosition){
+        if(playerNum == myPosition && i % playerNum == 0){
+            return true;
+        }else if(i % playerNum == myPosition){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    boolean notRightAnswer(String right){
+        String answer = takeAnswer.answer();
+        if(!answer.equals(right)){
+            printAnswers.print("Wrong, Game over. ");
+            return true;
+        }else{
+            return false;
+        }
     }
 
     String vary(int i){
 
-        if(isDivisible(i,3)  && isDivisible(i,5)) {
+        if(isDivisible(i,FIZZ_NUMBER)  && isDivisible(i,BUZZ_NUMBER)) {
             return FIZZ+BUZZ;
-        }else if(isDivisible(i,3)){
+        }else if(isDivisible(i,FIZZ_NUMBER)){
             return FIZZ;
-        }else if(isDivisible(i,5)){
+        }else if(isDivisible(i,BUZZ_NUMBER)){
             return BUZZ;
         }else{
             return Integer.toString(i);
@@ -54,14 +71,9 @@ public class GameNumberOff {
 
     }
 
+
     //check if the dividend can be divided by divisor
     boolean isDivisible(int dividend,int divisor){
-       /*if(dividend % divisor == 0){
-            return true;
-        }else{
-            return false;
-        }*/
-
         return dividend % divisor == 0;  //compliler suggests
     }
 }
