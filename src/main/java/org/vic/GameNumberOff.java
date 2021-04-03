@@ -74,6 +74,7 @@ public class GameNumberOff {
 
     //check if the dividend can be divided by divisor
     boolean isDivisible(int dividend,int divisor){
+
         return dividend % divisor == 0;  //compliler suggests
     }
 }

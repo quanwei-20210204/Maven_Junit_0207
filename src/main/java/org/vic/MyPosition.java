@@ -11,8 +11,8 @@ public class MyPosition {
         this.printAnswers = printAnswers;
         Random random = new Random();  //create a Random object
         myPosition = random.nextInt(playerNum)+1;  //generate a random Integer for my position
-        printAnswers.print("The player number is:" + playerNum);
-        printAnswers.print("My position is: " + myPosition);
+        //printAnswers.print("The player number is:" + playerNum);
+        //printAnswers.print("My position is: " + myPosition);
 
     }
 

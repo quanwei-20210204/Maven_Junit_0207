@@ -1,15 +1,12 @@
 package org.vic;
 
-import junit.framework.Assert;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.file.StandardWatchEventKinds;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -19,7 +16,7 @@ public class GameNumberOffTest {
 
     @Before
     public void setUp() throws Exception {
-        System.out.println("-----------test begins-----------");
+        System.out.println("-----------Game Number_Off test begins-----------");
     }
 
     @After
@@ -27,37 +24,61 @@ public class GameNumberOffTest {
         System.out.println("-----------test ends-----------");
     }
 
-    @Ignore
-    public void showOutcome() {
+    static class TestPrint extends PrintAnswers{
+        private final List<String> allPrintAnswers = new ArrayList<>();
+        @Override
+        public void print(String answers){
+            allPrintAnswers.add(answers);
+        }
+
+        public List<String> getAllAnswersOut(){
+            return allPrintAnswers;
+        }
+    }
+
+    static class TestTakeAnswers extends TakeAnswer{
+        private List<String> answers;
+        private int counter;
+
+        public TestTakeAnswers(){
+            answers = new ArrayList<>();
+            answers.add("fizz");
+            answers.add("11");
+        }
+
+        @Override
+        public String answer() {
+            counter++;
+            return answers.remove(0);
+        }
+
+        public int getAnswerCounter() {
+            return counter;
+        }
+
+        public void setTestAnswers(String[] answer) {
+            answers.clear();
+            answers.addAll(Arrays.asList(answer));
+        }
 
     }
 
-    private static ByteArrayInputStream in;
+    private final TestPrint testPrint = new TestPrint();
+    private final TestTakeAnswers testTakeAnswer = new TestTakeAnswers();
 
-    public void setInput(String input) {
-        in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
+    GameNumberOff gameNumberOff = new GameNumberOff(testPrint,testTakeAnswer);
+
+
+    @Test
+    public void need_vary_3_to_fizz() {
+        Assert.assertEquals("fizz",gameNumberOff.vary(3));
     }
 
-    @Ignore
-    public void countOff() {
-        String data = "6\n"
-                + "fizz\n"
-                + "three\n"
-                + "four\n"
-                + "five\n";
-        setInput(data);
-        //GameNumberOff gameNumberOff = new GameNumberOff();
-        //gameNumberOff.countOff(50,8);
-        //PrintAnswers.showOutcome(testOutcome);
-    }
-
-    @Ignore
-    public void vary() {
-        //GameNumberOff gameNumberOff = new GameNumberOff();
-        //Assert.assertEquals("fizz",gameNumberOff.vary(3));
-        //Assert.assertEquals("buzz",gameNumberOff.vary(5));
-        //Assert.assertEquals("fizzbuzz",gameNumberOff.vary(15));
-        //Assert.assertEquals("7",gameNumberOff.vary(7));
+    @Test
+    public void need_number_off_to_topLimit_and_vary(){
+        List<String> expectedResult = Arrays.asList("1", "2", "fizz", "4", "buzz", "fizz","7", "8", "fizz",
+                "buzz","11", "fizz", "13", "14","fizzbuzz");
+        gameNumberOff.countOff(15,8);
+        Assert.assertEquals(expectedResult,testPrint.getAllAnswersOut());
     }
 }
