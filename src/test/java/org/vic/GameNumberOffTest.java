@@ -56,7 +56,7 @@ public class GameNumberOffTest {
             return counter;
         }
 
-        public void setTestAnswers(String[] answer) {
+        public void setTestAnswers(String... answer) {
             answers.clear();
             answers.addAll(Arrays.asList(answer));
         }
@@ -74,11 +74,25 @@ public class GameNumberOffTest {
         Assert.assertEquals("fizz",gameNumberOff.vary(3));
     }
 
-    @Test
+    @Ignore
     public void need_number_off_to_topLimit_and_vary(){
         List<String> expectedResult = Arrays.asList("1", "2", "fizz", "4", "buzz", "fizz","7", "8", "fizz",
                 "buzz","11", "fizz", "13", "14","fizzbuzz");
         gameNumberOff.countOff(15,8);
         Assert.assertEquals(expectedResult,testPrint.getAllAnswersOut());
+    }
+
+    @Test
+    public void need_stop_count_when_wrong_answer(){
+        testTakeAnswer.setTestAnswers("fizz");
+        gameNumberOff.countOff(15,8);
+        Assert.assertEquals(1,testTakeAnswer.getAnswerCounter());
+    }
+
+    @Ignore
+    public void need_continue_count_to_end(){
+        testTakeAnswer.setTestAnswers("4", "fizz","buzz","28");
+        gameNumberOff.countOff(30,8);
+        Assert.assertEquals(4,testTakeAnswer.getAnswerCounter());
     }
 }
