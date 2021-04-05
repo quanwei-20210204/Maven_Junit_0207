@@ -16,10 +16,10 @@ public class HelloSAP {
             PrintAnswers printAnswers = new PrintAnswers();
             GameNumberOff gameNumberOff = new GameNumberOff(printAnswers,takeAnswer);
 
-            gameNumberOff.countOff(actualValue.getTopLimited(),PLAYERNUM);
+            gameNumberOff.countOff(actualValue.getTopLimited(),actualValue.getPlayerNumber());
 
-        }catch (Exception e){
-            System.out.println(e.getMessage()+"main()");
+        }catch (NumberFormatException e){
+            System.out.println("Wrong format: number needed.");
         }
 
     }
