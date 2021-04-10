@@ -1,6 +1,7 @@
 package org.vic;
 
-import java.util.Random;
+import java.text.DecimalFormat;
+import java.util.*;
 
 public class ProbabilityOfRedBalls {
     Random random = new Random();
@@ -12,9 +13,24 @@ public class ProbabilityOfRedBalls {
     private int whiteBalls = 50;
     private int blueBalls = 120;
 
+    void probabilityOfOneMillionTimes(){
+        int redTimes = 0;
+        for(int i = 0; i < 20; i++){
+            whichBallIsFirstEmpty();
+        }
+        System.out.print(redTimes);
+        //double probability = redTimes / 10000;
+        //DecimalFormat df = new DecimalFormat("0.000");
+        //System.out.print(df.format(probability));
+    }
+
     int whichBallIsFirstEmpty(){
-        for(int i=0; i<=200; i++){
-            getABallOut();
+
+        List<Integer> ballsList = mixBallsBox();
+
+        for(int i=0; i<200; i++){
+            getABallOut(ballsList);
+            //System.out.print("@"+redBalls+"  ,"+whiteBalls+"  ,"+ blueBalls+" ");
             if(redBallsEmpty()){
                 return RED;
             }else if(whiteBallsEmpty() || blueBallsEmpty()){
@@ -22,6 +38,25 @@ public class ProbabilityOfRedBalls {
             }
         }
         return WHITE;
+    }
+
+    List<Integer> mixBallsBox(){
+
+        List<Integer> ballsBox = new ArrayList<>(200);
+        for(int i = 0; i < redBalls; i++){
+            ballsBox.add(RED);
+        }
+        for(int i = 0; i < whiteBalls; i++){
+            ballsBox.add(WHITE);
+        }
+        for(int i = 0; i < blueBalls; i++){
+            ballsBox.add(BLUE);
+        }
+
+        Collections.shuffle(ballsBox);
+
+        return ballsBox;
+
     }
 
     boolean whiteBallsEmpty(){
@@ -48,8 +83,10 @@ public class ProbabilityOfRedBalls {
         }
     }
 
-    public void getABallOut(){
-        int selectedBall = random.nextInt(3);
+
+    public void getABallOut(List<Integer> ballsBox){
+        int selectedBall =  ballsBox.remove(0); //random.nextInt(3);
+        //System.out.print(selectedBall);
 
         switch(selectedBall){
             case 0:redBalls--;
