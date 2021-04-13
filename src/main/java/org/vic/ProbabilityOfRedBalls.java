@@ -1,5 +1,7 @@
 package org.vic;
 
+import com.sun.org.apache.regexp.internal.RE;
+
 import java.text.DecimalFormat;
 import java.util.*;
 
@@ -13,15 +15,30 @@ public class ProbabilityOfRedBalls {
     private int whiteBalls = 50;
     private int blueBalls = 120;
 
-    void probabilityOfOneMillionTimes(){
-        int redTimes = 0;
-        for(int i = 0; i < 20; i++){
-            whichBallIsFirstEmpty();
+    void testList(){
+        List<Integer> ballsBoxTest;
+        for(int i = 0; i < 300; i++){
+            ballsBoxTest = new ArrayList<>(Arrays.asList(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                    1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+                    2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+                    2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+                    2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2));
+            System.out.print(ballsBoxTest.size());
         }
-        System.out.print(redTimes);
-        //double probability = redTimes / 10000;
-        //DecimalFormat df = new DecimalFormat("0.000");
-        //System.out.print(df.format(probability));
+    }
+
+    float probabilityOfOneMillionTimes(){
+        int redTimes = 0;
+        for(int i = 0; i < 1000000; i++){
+            if(whichBallIsFirstEmpty() == RED){
+                redTimes++;
+            }
+        }
+        //System.out.println(redTimes);
+        DecimalFormat df = new DecimalFormat("0.000");
+        String probability = df.format((float)redTimes/1000000);
+        //System.out.print(probability);
+        return Float.parseFloat(probability);
     }
 
     int whichBallIsFirstEmpty(){
@@ -32,8 +49,10 @@ public class ProbabilityOfRedBalls {
             getABallOut(ballsList);
             //System.out.print("@"+redBalls+"  ,"+whiteBalls+"  ,"+ blueBalls+" ");
             if(redBallsEmpty()){
+                resetBallsNumber();
                 return RED;
             }else if(whiteBallsEmpty() || blueBallsEmpty()){
+                resetBallsNumber();
                 return WHITE;
             }
         }
@@ -42,8 +61,12 @@ public class ProbabilityOfRedBalls {
 
     List<Integer> mixBallsBox(){
 
-        List<Integer> ballsBox = new ArrayList<>(200);
-        for(int i = 0; i < redBalls; i++){
+        List<Integer> ballsBox = new ArrayList<>(Arrays.asList(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+                2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+                2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+                2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2));
+        /*for(int i = 0; i < redBalls; i++){
             ballsBox.add(RED);
         }
         for(int i = 0; i < whiteBalls; i++){
@@ -51,10 +74,10 @@ public class ProbabilityOfRedBalls {
         }
         for(int i = 0; i < blueBalls; i++){
             ballsBox.add(BLUE);
-        }
+        }*/
 
         Collections.shuffle(ballsBox);
-
+        //System.out.print(ballsBox);
         return ballsBox;
 
     }
@@ -89,14 +112,20 @@ public class ProbabilityOfRedBalls {
         //System.out.print(selectedBall);
 
         switch(selectedBall){
-            case 0:redBalls--;
+            case RED:redBalls--;
                 break;
-            case 1:whiteBalls--;
+            case WHITE:whiteBalls--;
                 break;
-            case 2:blueBalls--;
+            case BLUE:blueBalls--;
                 break;
         }
         //return selectedBall;
+    }
+
+    public void resetBallsNumber(){
+        redBalls = 30;
+        whiteBalls = 50;
+        blueBalls = 120;
     }
 
 }

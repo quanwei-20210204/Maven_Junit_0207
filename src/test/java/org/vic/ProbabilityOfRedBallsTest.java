@@ -10,6 +10,11 @@ import static org.junit.Assert.*;
 
 public class ProbabilityOfRedBallsTest {
 
+    @Test
+    public void ballsBoxTest(){
+        ProbabilityOfRedBalls probability = new ProbabilityOfRedBalls();
+        probability.testList();
+    }
 
     @Test
     public void mixBallsBox(){
@@ -39,10 +44,11 @@ public class ProbabilityOfRedBallsTest {
         Assert.assertEquals(0, whichBall);
     }
 
-    @Ignore
+    @Test
     public void probabilityOfOneMillionTimes(){
         ProbabilityOfRedBalls probability = new ProbabilityOfRedBalls();
-        //probability.probabilityOfOneMillionTimes();
+        float proba = probability.probabilityOfOneMillionTimes();
+        Assert.assertEquals(true,proba < 0.6 && proba >0.55);
 
     }
 
