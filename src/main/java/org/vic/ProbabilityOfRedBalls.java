@@ -15,18 +15,6 @@ public class ProbabilityOfRedBalls {
     private int whiteBalls = 50;
     private int blueBalls = 120;
 
-    void testList(){
-        List<Integer> ballsBoxTest;
-        for(int i = 0; i < 300; i++){
-            ballsBoxTest = new ArrayList<>(Arrays.asList(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                    1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-                    2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
-                    2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
-                    2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2));
-            System.out.print(ballsBoxTest.size());
-        }
-    }
-
     float probabilityOfOneMillionTimes(){
         int redTimes = 0;
         for(int i = 0; i < 1000000; i++){
@@ -34,10 +22,8 @@ public class ProbabilityOfRedBalls {
                 redTimes++;
             }
         }
-        //System.out.println(redTimes);
         DecimalFormat df = new DecimalFormat("0.000");
         String probability = df.format((float)redTimes/1000000);
-        //System.out.print(probability);
         return Float.parseFloat(probability);
     }
 
@@ -47,7 +33,6 @@ public class ProbabilityOfRedBalls {
 
         for(int i=0; i<200; i++){
             getABallOut(ballsList);
-            //System.out.print("@"+redBalls+"  ,"+whiteBalls+"  ,"+ blueBalls+" ");
             if(redBallsEmpty()){
                 resetBallsNumber();
                 return RED;
@@ -66,18 +51,8 @@ public class ProbabilityOfRedBalls {
                 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
                 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
                 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2));
-        /*for(int i = 0; i < redBalls; i++){
-            ballsBox.add(RED);
-        }
-        for(int i = 0; i < whiteBalls; i++){
-            ballsBox.add(WHITE);
-        }
-        for(int i = 0; i < blueBalls; i++){
-            ballsBox.add(BLUE);
-        }*/
 
         Collections.shuffle(ballsBox);
-        //System.out.print(ballsBox);
         return ballsBox;
 
     }
@@ -109,7 +84,6 @@ public class ProbabilityOfRedBalls {
 
     public void getABallOut(List<Integer> ballsBox){
         int selectedBall =  ballsBox.remove(0); //random.nextInt(3);
-        //System.out.print(selectedBall);
 
         switch(selectedBall){
             case RED:redBalls--;
@@ -119,7 +93,6 @@ public class ProbabilityOfRedBalls {
             case BLUE:blueBalls--;
                 break;
         }
-        //return selectedBall;
     }
 
     public void resetBallsNumber(){

@@ -11,18 +11,10 @@ import static org.junit.Assert.*;
 public class ProbabilityOfRedBallsTest {
 
     @Test
-    public void ballsBoxTest(){
-        ProbabilityOfRedBalls probability = new ProbabilityOfRedBalls();
-        probability.testList();
-    }
-
-    @Test
     public void mixBallsBox(){
         ProbabilityOfRedBalls probability = new ProbabilityOfRedBalls();
         List<Integer> list = probability.mixBallsBox();
-        for(Integer i:list){
-            System.out.print(i);
-        }
+        Assert.assertEquals(true,list.size()!=0);
     }
 
     @Test
