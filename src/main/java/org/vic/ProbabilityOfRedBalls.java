@@ -11,38 +11,6 @@ public class ProbabilityOfRedBalls {
     private final int RED = 0;
     private final int WHITE = 1;
     private final int BLUE= 2;
-    private int redBalls = 30;
-    private int whiteBalls = 50;
-    private int blueBalls = 120;
-
-    float probabilityOfOneMillionTimes(){
-        int redTimes = 0;
-        for(int i = 0; i < 1000000; i++){
-            if(whichBallIsFirstEmpty() == RED){
-                redTimes++;
-            }
-        }
-        DecimalFormat df = new DecimalFormat("0.000");
-        String probability = df.format((float)redTimes/1000000);
-        return Float.parseFloat(probability);
-    }
-
-    int whichBallIsFirstEmpty(){
-
-        List<Integer> ballsList = mixBallsBox();
-
-        for(int i=0; i<200; i++){
-            getABallOut(ballsList);
-            if(redBallsEmpty()){
-                resetBallsNumber();
-                return RED;
-            }else if(whiteBallsEmpty() || blueBallsEmpty()){
-                resetBallsNumber();
-                return WHITE;
-            }
-        }
-        return WHITE;
-    }
 
     List<Integer> mixBallsBox(){
 
@@ -57,48 +25,49 @@ public class ProbabilityOfRedBalls {
 
     }
 
-    boolean whiteBallsEmpty(){
-        if(whiteBalls > 0){
-            return false;
-        }else{
-            return true;
+    int whichBallIsFirstEmpty(List<Integer> ballsBox){
+        int redBalls = 30;
+        int whiteBalls = 50;
+        int blueBalls = 120;
+
+        int selectedBall;
+
+        for(int i=0; i<200; i++){
+            selectedBall =  ballsBox.remove(0);
+            switch (selectedBall){
+                case RED:
+                    redBalls--;
+                    break;
+                case WHITE:
+                    whiteBalls--;
+                    break;
+                case BLUE:
+                    blueBalls--;
+                    break;
+            }
+            if(redBalls==0){
+                return RED;
+            }else if(whiteBalls == 0 || blueBalls == 0){
+                return WHITE;
+            }
         }
+        return WHITE;
     }
 
-    boolean blueBallsEmpty(){
-        if(blueBalls > 0){
-            return false;
-        }else{
-            return true;
+    float probabilityOfOneMillionTimes(){
+        int redTimes = 0;
+        for(int i = 0; i < 1000000; i++){
+            if(whichBallIsFirstEmpty(mixBallsBox()) == RED){
+                redTimes++;
+            }
         }
+        return calculateProbability(redTimes,1000000);
     }
 
-    boolean redBallsEmpty(){
-        if(redBalls > 0){
-            return false;
-        }else{
-            return true;
-        }
-    }
-
-
-    public void getABallOut(List<Integer> ballsBox){
-        int selectedBall =  ballsBox.remove(0); //random.nextInt(3);
-
-        switch(selectedBall){
-            case RED:redBalls--;
-                break;
-            case WHITE:whiteBalls--;
-                break;
-            case BLUE:blueBalls--;
-                break;
-        }
-    }
-
-    public void resetBallsNumber(){
-        redBalls = 30;
-        whiteBalls = 50;
-        blueBalls = 120;
+    float calculateProbability(int times, int totolTimes){
+        DecimalFormat df = new DecimalFormat("0.000");
+        String probability = df.format((float)times/1000000);
+        return Float.parseFloat(probability);
     }
 
 }

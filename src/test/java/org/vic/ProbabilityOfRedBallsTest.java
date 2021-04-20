@@ -17,20 +17,14 @@ public class ProbabilityOfRedBallsTest {
         Assert.assertEquals(true,list.size()!=0);
     }
 
-    @Test
-    public  void getABallOut(){
-        ProbabilityOfRedBalls probability = new ProbabilityOfRedBalls();
-        List<Integer> list = probability.mixBallsBox();
-        probability.getABallOut(list);
 
-    }
     @Test
     public void whichBallIsFirstEmpty() {
         int whichBall = 0;
 
         for(int i = 0; i < 20000; i++){
         ProbabilityOfRedBalls probability = new ProbabilityOfRedBalls();
-        whichBall += probability.whichBallIsFirstEmpty();
+        whichBall += probability.whichBallIsFirstEmpty(probability.mixBallsBox());
         }
 
         Assert.assertEquals(0, whichBall);
