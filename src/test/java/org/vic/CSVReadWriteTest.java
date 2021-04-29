@@ -11,4 +11,10 @@ public class CSVReadWriteTest {
         CSVReadWrite csvReadWrite = new CSVReadWrite();
         csvReadWrite.read();
     }
+
+    @Test
+    public void write(){
+        CSVReadWrite csvReadWrite = new CSVReadWrite();
+        csvReadWrite.write();
+    }
 }

@@ -1,8 +1,6 @@
 package org.vic;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import java.io.*;
 
 public class CSVReadWrite {
 
@@ -23,6 +21,22 @@ public class CSVReadWrite {
 
     }
 
+    public void write(){
+        File writeFile = new File("C:\\Users\\i075523\\Desktop\\temp\\CSVFolder\\write.csv");
 
+        try{
+            BufferedWriter writeCSV = new BufferedWriter(new FileWriter(writeFile));
+            for (int i = 0; i < 5; i++){
+                writeCSV.newLine();
+                writeCSV.write("new user" + i + ", male ," + (18+i));
+            }
+
+            writeCSV.flush();
+            writeCSV.close();
+
+        }catch(Exception e){
+            System.out.println("not right.");
+        }
+    }
 
 }
