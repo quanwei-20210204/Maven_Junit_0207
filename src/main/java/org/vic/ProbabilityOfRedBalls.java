@@ -6,29 +6,35 @@ import java.text.DecimalFormat;
 import java.util.*;
 
 public class ProbabilityOfRedBalls {
-    Random random = new Random();
-
     private final int RED = 0;
     private final int WHITE = 1;
     private final int BLUE= 2;
+    private final int REDNUM = 30;
+    private final int WHITENUM = 30;
+    private final int BLUENUM = 30;
 
     List<Integer> mixBallsBox(){
 
-        List<Integer> ballsBox = new ArrayList<>(Arrays.asList(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-                2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
-                2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
-                2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2));
+        List<Integer> ballsBox = new ArrayList<>();
+        for(int i = 0; i < REDNUM; i++){
+            ballsBox.add(RED);
+        }
+        for(int i = 0; i < WHITENUM; i++){
+            ballsBox.add(WHITE);
+        }
+        for(int i = 0; i < BLUENUM; i++){
+            ballsBox.add(BLUE);
+        }
 
         Collections.shuffle(ballsBox);
         return ballsBox;
 
     }
 
-    int whichBallIsFirstEmpty(List<Integer> ballsBox){
-        int redBalls = 30;
-        int whiteBalls = 50;
-        int blueBalls = 120;
+    int whichBallIsFirstEmpty(List<Integer> ballsBox,int redNum, int whiteNum, int blueNum){
+        int redBalls = redNum;
+        int whiteBalls = whiteNum;
+        int blueBalls = blueNum;
 
         int selectedBall;
 
@@ -45,28 +51,32 @@ public class ProbabilityOfRedBalls {
                     blueBalls--;
                     break;
             }
-            if(redBalls==0){
+
+            if(redBalls == 0){
                 return RED;
-            }else if(whiteBalls == 0 || blueBalls == 0){
+            }else if(whiteBalls == 0 ){
+                return WHITE;
+            }else if( blueBalls == 0){
                 return WHITE;
             }
         }
         return WHITE;
     }
 
-    float probabilityOfOneMillionTimes(){
+    float probabilityOfOneMillionTimes(int redNum, int whiteNum, int blueNum){
         int redTimes = 0;
         for(int i = 0; i < 1000000; i++){
-            if(whichBallIsFirstEmpty(mixBallsBox()) == RED){
+            if(whichBallIsFirstEmpty(mixBallsBox(),redNum,whiteNum,blueNum) == RED){
                 redTimes++;
             }
         }
+        System.out.println(redTimes);
         return calculateProbability(redTimes,1000000);
     }
 
     float calculateProbability(int times, int totolTimes){
         DecimalFormat df = new DecimalFormat("0.000");
-        String probability = df.format((float)times/1000000);
+        String probability = df.format((float)times/totolTimes);
         return Float.parseFloat(probability);
     }
 

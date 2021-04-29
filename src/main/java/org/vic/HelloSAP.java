@@ -8,7 +8,7 @@ public class HelloSAP {
 
     public static void main(String[] args){
         ProbabilityOfRedBalls probability = new ProbabilityOfRedBalls();
-        float pro = probability.probabilityOfOneMillionTimes();
+        float pro = probability.probabilityOfOneMillionTimes(30,50,120);
         System.out.println("The probability is: " + pro);
     }
 
