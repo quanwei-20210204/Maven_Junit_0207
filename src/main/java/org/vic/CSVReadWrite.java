@@ -4,21 +4,64 @@ import java.io.*;
 
 public class CSVReadWrite {
 
-    public void read(){
-        File csv = new File("C:\\Users\\i075523\\Desktop\\temp\\CSVFolder\\read.csv");
+    public boolean  isDirectiory(File fileDiretory){
+        return fileDiretory.isDirectory();
+    }
 
+    public int read(File csvFile){
         try{
-            BufferedReader textFile = new BufferedReader(new FileReader(csv));
+            File csv = csvFile;
+            int lineNum = 0;
 
-            String lineData = "";
 
-            while((lineData = textFile.readLine())!= null){
-                System.out.println(lineData);
+            if(!csv.isDirectory()){
+                BufferedReader textFile = new BufferedReader(new FileReader(csv));
+
+                String lineData = "";
+
+                while((lineData = textFile.readLine())!= null){
+                    //System.out.println(lineData);
+                    lineNum++;
+                }
+            }else if (csv.isDirectory()){
+                String[] fileList = csv.list();
+
+                for(int i = 0; i<fileList.length; i++){
+                    csv = new File(fileList[i]);
+                    BufferedReader textFile = new BufferedReader(new FileReader(csv));
+
+                    String lineData = "";
+
+                    while((lineData = textFile.readLine())!= null){
+                        System.out.println(lineData);
+                        lineNum++;
+                    }
+                }
+
             }
+
+            return lineNum;
         }catch(Exception e){
             System.out.println("wrong");
         }
+        return -1;
 
+    }
+
+    public void readCSVLines(File csvFile){
+        try{
+            BufferedReader textFile = new BufferedReader(new FileReader(csvFile));
+
+            String lineData = "";
+            int lineNum = 0;
+
+            while((lineData = textFile.readLine())!= null){
+                //System.out.println(lineData);
+                lineNum++;
+            }
+        }catch(Exception ex){
+
+        }
     }
 
     public void write(){
