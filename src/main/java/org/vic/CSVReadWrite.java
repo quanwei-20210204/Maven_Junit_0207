@@ -4,9 +4,6 @@ import java.io.*;
 
 public class CSVReadWrite {
 
-    public boolean  isDirectiory(File fileDiretory){
-        return fileDiretory.isDirectory();
-    }
 
     public int read(File csvFile){
         try{
@@ -24,10 +21,10 @@ public class CSVReadWrite {
                     lineNum++;
                 }
             }else if (csv.isDirectory()){
-                String[] fileList = csv.list();
+                File[] fileList = csv.listFiles();
 
                 for(int i = 0; i<fileList.length; i++){
-                    csv = new File(fileList[i]);
+                    csv = fileList[i];
                     BufferedReader textFile = new BufferedReader(new FileReader(csv));
 
                     String lineData = "";

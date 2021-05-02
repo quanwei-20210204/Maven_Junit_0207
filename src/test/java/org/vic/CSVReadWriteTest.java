@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 
 public class CSVReadWriteTest {
 
-   /* private PrintStream originalOut;
+   private PrintStream originalOut;
     private OutputStream out;
 
     @Before
@@ -28,7 +28,7 @@ public class CSVReadWriteTest {
     @After
     public void tearDown() throws Exception {
         System.setOut(originalOut);
-    }*/
+    }
 
     @Test
     public void read() {
@@ -43,24 +43,16 @@ public class CSVReadWriteTest {
         File filePath = new File("C:\\Users\\i075523\\Desktop\\temp\\CSVFolder");
         CSVReadWrite csvReadWrite = new CSVReadWrite();
         int no = csvReadWrite.read(filePath);
-        Assert.assertEquals(12,no);
+        Assert.assertEquals(14,no);
 
     }
 
-    @Ignore
-    public void isDirectory(){
-        File filePath = new File("C:\\Users\\i075523\\Desktop\\temp\\CSVFolder");
-        CSVReadWrite csvReadWrite = new CSVReadWrite();
-        boolean result = csvReadWrite.isDirectiory(filePath);
-        Assert.assertEquals(true,result);
-    }
-
-    @Ignore
+    @Test
     public void need_show_error_message(){
             File csvFile = new File("C:\\Users\\i075523\\Desktop\\temp\\CSVFolder\\readInvalid.csv");
             CSVReadWrite csvReadWrite = new CSVReadWrite();
             int no = csvReadWrite.read(csvFile);
-            //assertEquals("wrong\r\n", out.toString());
+            assertEquals("wrong\r\n", out.toString());
     }
 
     @Test
