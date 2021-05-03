@@ -1,62 +1,92 @@
 package org.vic;
 
 import java.io.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CSVReadWrite {
 
 
-    public int read(File csvFile){
+    public int read(File csvFile,String searchValue){
         try{
             File csv = csvFile;
             int lineNum = 0;
 
 
             if(!csv.isDirectory()){
-                BufferedReader textFile = new BufferedReader(new FileReader(csv));
 
-                String lineData = "";
+                lineNum = readCSVLines(csv,searchValue);
 
-                while((lineData = textFile.readLine())!= null){
-                    //System.out.println(lineData);
-                    lineNum++;
-                }
             }else if (csv.isDirectory()){
+
                 File[] fileList = csv.listFiles();
 
                 for(int i = 0; i<fileList.length; i++){
                     csv = fileList[i];
-                    BufferedReader textFile = new BufferedReader(new FileReader(csv));
-
-                    String lineData = "";
-
-                    while((lineData = textFile.readLine())!= null){
-                        System.out.println(lineData);
-                        lineNum++;
-                    }
+                    lineNum += readCSVLines(csv,searchValue);
                 }
-
             }
-
             return lineNum;
         }catch(Exception e){
             System.out.println("wrong");
         }
         return -1;
-
     }
 
-    public void readCSVLines(File csvFile){
-        try{
+    public int readCSVLines(File csvFile,String searchString) {
+        try {
             BufferedReader textFile = new BufferedReader(new FileReader(csvFile));
-
             String lineData = "";
-            int lineNum = 0;
-
-            while((lineData = textFile.readLine())!= null){
-                //System.out.println(lineData);
-                lineNum++;
+            int times = 0;
+            while ((lineData = textFile.readLine()) != null) {
+                times += searchString(lineData,searchString);
             }
-        }catch(Exception ex){
+            System.out.println(times);
+            return times;
+        } catch (Exception ex) {
+            System.out.println("wrong");
+        }
+        return -1;
+    }
+
+    public int searchString(String parentString,String childString){
+        int count=0;
+        int StartIndex=0;
+
+        while(parentString.indexOf(childString,StartIndex)!=-1){
+            StartIndex = parentString.indexOf(childString,StartIndex);
+            StartIndex += childString.length();
+            count++;
+        }
+        return count;
+    }
+
+    public void readCSVLines_(File csvFile,String regex) {
+        try {
+            regex = "[N][a]";
+            BufferedReader textFile = new BufferedReader(new FileReader(csvFile));
+            Pattern pattern = Pattern.compile(regex);
+            String lineData = "NameHello";
+            Matcher matcher = pattern.matcher(lineData);
+            System.out.println(matcher.find());
+            //regex = "[1-9]\\d{4,14}";
+            regex = "[N]*";
+
+            System.out.println();
+
+
+
+            //System.out.println(lineData.matches(regEx));
+            //System.out.println(matcher.matches());
+
+            int lineNum = 0;
+/*
+            while ((lineData = textFile.readLine()) != null) {
+                Matcher matcher = pattern.matcher(lineData);
+                boolean rs = matcher.matches();
+                System.out.println(rs);
+            }*/
+        } catch (Exception ex) {
 
         }
     }
