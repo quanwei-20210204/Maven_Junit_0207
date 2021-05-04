@@ -1,21 +1,23 @@
 package org.vic;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CSVReadWrite {
 
 
-    public int read(File csvFile,String searchValue){
-        try{
+    public List<String> read(File csvFile,String searchValue){
+
             File csv = csvFile;
             int lineNum = 0;
-
+            List<String> searchResult = new ArrayList<>();
 
             if(!csv.isDirectory()){
 
-                lineNum = readCSVLines(csv,searchValue);
+                searchResult = readCSVLines(csv,searchValue);
 
             }else if (csv.isDirectory()){
 
@@ -23,42 +25,40 @@ public class CSVReadWrite {
 
                 for(int i = 0; i<fileList.length; i++){
                     csv = fileList[i];
-                    lineNum += readCSVLines(csv,searchValue);
+                    searchResult.addAll(readCSVLines(csv,searchValue));
                 }
             }
-            return lineNum;
-        }catch(Exception e){
-            System.out.println("wrong");
-        }
-        return -1;
+            return searchResult;
+
     }
 
-    public int readCSVLines(File csvFile,String searchString) {
+    public List<String> readCSVLines(File csvFile,String searchString) {
         try {
             BufferedReader textFile = new BufferedReader(new FileReader(csvFile));
+            List<String> resultList = new ArrayList<String>();
             String lineData = "";
-            int times = 0;
             while ((lineData = textFile.readLine()) != null) {
-                times += searchString(lineData,searchString);
+                resultList.addAll(searchString(lineData,searchString));
             }
-            System.out.println(times);
-            return times;
+            System.out.println(resultList);
+            return resultList;
         } catch (Exception ex) {
-            System.out.println("wrong");
+            System.out.println("wrong at readCSVLines");
         }
-        return -1;
+        return null;
     }
 
-    public int searchString(String parentString,String childString){
+    public List<String> searchString(String parentString,String childString){
         int count=0;
         int StartIndex=0;
+        List<String> lineResult = new ArrayList<>();
 
         while(parentString.indexOf(childString,StartIndex)!=-1){
             StartIndex = parentString.indexOf(childString,StartIndex);
             StartIndex += childString.length();
-            count++;
+            lineResult.add(childString);
         }
-        return count;
+        return lineResult;
     }
 
     public void readCSVLines_(File csvFile,String regex) {

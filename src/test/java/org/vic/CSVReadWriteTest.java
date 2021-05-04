@@ -10,11 +10,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
 public class CSVReadWriteTest {
-
+/*
     private PrintStream originalOut;
     private OutputStream out;
 
@@ -29,21 +30,21 @@ public class CSVReadWriteTest {
     public void tearDown() throws Exception {
         System.setOut(originalOut);
     }
-
+*/
     @Test
     public void read() {
         File csvFile = new File("C:\\Users\\i075523\\Desktop\\temp\\CSVFolder\\read.csv");
         CSVReadWrite csvReadWrite = new CSVReadWrite();
-        int no = csvReadWrite.read(csvFile,"Name");
-        Assert.assertEquals(2,no);
+        List<String> resultTest = csvReadWrite.read(csvFile,"Name");
+        Assert.assertEquals(2,resultTest.size());
     }
 
     @Test
     public void read_all_files_in_directory(){
         File filePath = new File("C:\\Users\\i075523\\Desktop\\temp\\CSVFolder");
         CSVReadWrite csvReadWrite = new CSVReadWrite();
-        int no = csvReadWrite.read(filePath,"male");
-        Assert.assertEquals(7,no);
+        List<String> resultTest = csvReadWrite.read(filePath,"male");
+        Assert.assertEquals(7,resultTest.size());
 
     }
 
@@ -51,7 +52,7 @@ public class CSVReadWriteTest {
     public void need_show_error_message(){
             File csvFile = new File("C:\\Users\\i075523\\Desktop\\temp\\CSVFolder\\readInvalid.csv");
             CSVReadWrite csvReadWrite = new CSVReadWrite();
-            int no = csvReadWrite.read(csvFile,"age");
+            csvReadWrite.read(csvFile,"age");
             //assertEquals("wrong\r\n", out.toString());
     }
 
@@ -59,8 +60,8 @@ public class CSVReadWriteTest {
     public void readCSVLines(){
         File csvFile = new File("C:\\Users\\i075523\\Desktop\\temp\\CSVFolder\\read.csv");
         CSVReadWrite csvReadWrite = new CSVReadWrite();
-        int result = csvReadWrite.readCSVLines(csvFile,"Name");
-        assertEquals(2,result);
+        List<String> fileResult = csvReadWrite.readCSVLines(csvFile,"Name");
+        assertEquals(2,fileResult.size());
 
     }
 
@@ -69,8 +70,8 @@ public class CSVReadWriteTest {
         String parent = "public void Through IndexOf(String parent,String child";
         String child = "String";
         CSVReadWrite csvReadWrite = new CSVReadWrite();
-        int times = csvReadWrite.searchString(parent,child);
-        Assert.assertEquals(2,times);
+        List<String> resultTest = csvReadWrite.searchString(parent,child);
+        Assert.assertEquals(2,resultTest.size());
     }
 
     @Test
