@@ -12,7 +12,6 @@ public class CSVReadWrite {
     public List<String> read(File csvFile,String searchValue){
 
             File csv = csvFile;
-            int lineNum = 0;
             List<String> searchResult = new ArrayList<>();
 
             if(!csv.isDirectory()){
@@ -32,6 +31,15 @@ public class CSVReadWrite {
 
     }
 
+    public void readResult(File csvFile){
+        try{
+            BufferedReader textFile = new BufferedReader(new FileReader(csvFile));
+            System.out.println(textFile.readLine());
+        }catch (Exception e){
+
+        }
+    }
+
     public List<String> readCSVLines(File csvFile,String searchString) {
         try {
             BufferedReader textFile = new BufferedReader(new FileReader(csvFile));
@@ -40,7 +48,15 @@ public class CSVReadWrite {
             while ((lineData = textFile.readLine()) != null) {
                 resultList.addAll(searchString(lineData,searchString));
             }
-            System.out.println(resultList);
+
+            /*
+            while ((lineData = textFile.readLine()) != null) {
+                lineData.concat(lineData);
+                resultList.addAll(searchString(lineData,searchString));
+            }
+             */
+
+            //System.out.println(resultList);
             return resultList;
         } catch (Exception ex) {
             System.out.println("wrong at readCSVLines");
@@ -49,7 +65,6 @@ public class CSVReadWrite {
     }
 
     public List<String> searchString(String parentString,String childString){
-        int count=0;
         int StartIndex=0;
         List<String> lineResult = new ArrayList<>();
 
@@ -91,14 +106,15 @@ public class CSVReadWrite {
         }
     }
 
-    public void write(){
+    public void write(List<String> resultList, String seperator){
         File writeFile = new File("C:\\Users\\i075523\\Desktop\\temp\\CSVFolder\\write.csv");
-
+        List<String> toWriteList = resultList;
         try{
             BufferedWriter writeCSV = new BufferedWriter(new FileWriter(writeFile));
-            for (int i = 0; i < 5; i++){
-                writeCSV.newLine();
-                writeCSV.write("new user" + i + ", male ," + (18+i));
+            //writeCSV.newLine();
+            for (int i = 0; i < toWriteList.size(); i++){
+                writeCSV.write(toWriteList.get(i)+seperator+" ");
+                //writeCSV.write("new user" + i + ", male ," + (18+i));
             }
 
             writeCSV.flush();

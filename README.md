@@ -61,10 +61,14 @@ http://www.10qianwan.com/articledetail/758025.html
 功能要求，可以根据进展情况选择逐步完成.
 
 ## 3-1 
-可以根据值相等、start with、end with查找；
-思路：读一个CSV文件
-读文件夹里所有的CSV文件
+可以根据值相等、start with、end with查找；  
+思路：读一个CSV文件  
+读文件夹里所有的CSV文件   
 读文件夹里所有的CSV文件（包括子文件夹）
-（train of thought）
-测试异常？
-如何才能值相等？
+（train of thought）  
+测试异常？  
+如何才能值相等？ 值匹配 indexOf()  
+测试中文是否支持？  
+如何把CSV文件 作为一个大的字符串？concat()   
+写入文件-- 如何测试 我怎么知道 写入的是正确的？  
+
