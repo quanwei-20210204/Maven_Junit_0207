@@ -9,7 +9,15 @@ import java.util.regex.Pattern;
 public class CSVReadWrite {
 
 
+
     public List<String> read(File csvFile,String searchValue){
+
+            //Parameters are needed to check?  searchValue is not blank;
+            PrintAnswers printError = new PrintAnswers();
+            if(ParametersCheck.isEmpty(searchValue)){
+                printError.print("search value can't be empty.");
+                return null;
+            }
 
             File csv = csvFile;
             List<String> searchResult = new ArrayList<>();
