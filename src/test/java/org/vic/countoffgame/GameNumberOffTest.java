@@ -1,15 +1,13 @@
-package org.vic;
+package org.vic.countoffgame;
 
 import org.junit.*;
+import org.vic.countoffgame.GameNumberOff;
+import org.vic.countoffgame.PrintAnswers;
+import org.vic.countoffgame.TakeAnswer;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.nio.file.StandardWatchEventKinds;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class GameNumberOffTest {
     public static final int TOPLIMITED = 100;
@@ -24,7 +22,7 @@ public class GameNumberOffTest {
         System.out.println("-----------test ends-----------");
     }
 
-    static class TestPrint extends PrintAnswers{
+    static class TestPrint extends PrintAnswers {
         private final List<String> allPrintAnswers = new ArrayList<>();
         @Override
         public void print(String answers){
@@ -36,7 +34,7 @@ public class GameNumberOffTest {
         }
     }
 
-    static class TestTakeAnswers extends TakeAnswer{
+    static class TestTakeAnswers extends TakeAnswer {
         private List<String> answers;
         private int counter;
 

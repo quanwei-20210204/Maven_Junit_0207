@@ -1,9 +1,8 @@
-package org.vic;
+package org.vic.countoffgame;
 
 import org.junit.*;
 import org.junit.rules.ExpectedException;
-
-import java.rmi.server.ExportException;
+import org.vic.countoffgame.ActualValue;
 
 import static org.junit.Assert.*;
 

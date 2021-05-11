@@ -1,13 +1,13 @@
-package org.vic;
+package org.vic.countoffgame;
 
 import junit.framework.Assert;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.vic.countoffgame.TakeAnswer;
 
 import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class TakeAnswerTest {
     }
 
 
-    static class TestTakeAnswer extends TakeAnswer{
+    static class TestTakeAnswer extends TakeAnswer {
         private List<String> answers;
 
         public TestTakeAnswer(){

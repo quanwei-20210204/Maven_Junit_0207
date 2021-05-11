@@ -1,15 +1,12 @@
-package org.vic;
+package org.vic.csvreaderwriter;
 
 import junit.framework.Assert;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
+import org.vic.csvreaderwriter.CSVReadWrite;
 
-import java.io.ByteArrayOutputStream;
+import java.io.BufferedWriter;
 import java.io.File;
-import java.io.OutputStream;
-import java.io.PrintStream;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,10 +31,31 @@ public class CSVReadWriteTest {
 */
     @Test
     public void read() {
-        File csvFile = new File("C:\\Users\\i075523\\Desktop\\temp\\CSVFolder\\read.csv");
+        //File csvFile = new File("C:\\Users\\i075523\\Desktop\\temp\\CSVFolder\\read.csv");
+        //File csvFile = new File("src/test/resources/read.csv");
+
+        String resourcePath = getClass().getResource("/read.csv").getPath();
+        //System.out.println(resourcePath);
+        File csvFile = new File(resourcePath);
+
+        try{
+            BufferedWriter writeCSV = new BufferedWriter(new FileWriter(csvFile));
+
+            for (int i = 0; i < 3; i++){
+                writeCSV.write("new user Name" + i + ", male ," + (18+i));
+                writeCSV.newLine();
+            }
+
+            writeCSV.flush();
+            writeCSV.close();
+
+        }catch(Exception e){
+            System.out.println("not right.");
+        }
+
         CSVReadWrite csvReadWrite = new CSVReadWrite();
         List<String> resultTest = csvReadWrite.read(csvFile,"Name");
-        Assert.assertEquals(2,resultTest.size());
+        Assert.assertEquals(3,resultTest.size());
     }
 
     @Test

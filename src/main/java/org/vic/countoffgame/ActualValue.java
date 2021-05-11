@@ -1,4 +1,4 @@
-package org.vic;
+package org.vic.countoffgame;
 
 //get the actual argument for countOff()
 public class ActualValue {

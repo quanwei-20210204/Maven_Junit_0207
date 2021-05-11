@@ -1,4 +1,4 @@
-package org.vic;
+package org.vic.probability;
 
 import com.sun.org.apache.regexp.internal.RE;
 

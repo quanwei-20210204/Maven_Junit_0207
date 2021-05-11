@@ -71,4 +71,15 @@ http://www.10qianwan.com/articledetail/758025.html
 测试中文是否支持？  
 如何把CSV文件 作为一个大的字符串？concat()   
 写入文件-- 如何测试 我怎么知道 写入的是正确的？  
+参数校验与IDEA中的校验（报错）有何区别？  
+代码检查 规范？  
+
+Comments from Coach Vic's View on May 10th(10/05)  
+1.Packages  
+2.Test Data File -- put it in the package  
+3.Test Case's iteration  how to make it clear in UT what's expected?  
+  --String resourcePath = getClass().getResource("/").getPath(); 即可 获取resource的文件路径  
+4.  
+5.
+
 

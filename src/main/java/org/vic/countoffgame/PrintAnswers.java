@@ -1,4 +1,4 @@
-package org.vic;
+package org.vic.countoffgame;
 
 import java.util.List;
 

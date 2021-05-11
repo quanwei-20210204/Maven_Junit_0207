@@ -1,15 +1,12 @@
-package org.vic;
+package org.vic.countoffgame;
 
 import junit.framework.Assert;
 import org.junit.*;
+import org.vic.countoffgame.HelloSAP;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
 
 //task 2-3, unit test for class HelloSAP, only one method
 public class HelloSAPTest {

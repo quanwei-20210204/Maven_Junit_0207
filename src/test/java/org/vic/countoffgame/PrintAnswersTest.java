@@ -1,13 +1,12 @@
-package org.vic;
+package org.vic.countoffgame;
 
 import org.junit.*;
+import org.vic.countoffgame.PrintAnswers;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class PrintAnswersTest {
     final static int NUMBER = 3;

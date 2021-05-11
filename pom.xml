@@ -30,7 +30,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>org.vic.HelloSAP</mainClass>
+                            <mainClass>org.vic.countoffgame.HelloSAP</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

@@ -1,4 +1,11 @@
-package org.vic;
+package org.vic.countoffgame;
+
+import org.vic.countoffgame.ActualValue;
+import org.vic.countoffgame.GameNumberOff;
+import org.vic.countoffgame.PrintAnswers;
+import org.vic.countoffgame.TakeAnswer;
+import org.vic.csvreaderwriter.CSVReadWrite;
+import org.vic.probability.ProbabilityOfRedBalls;
 
 import java.io.File;
 import java.util.*;
@@ -19,8 +26,8 @@ public class HelloSAP {
 
     public static void main_for_probability(String[] args){
         ProbabilityOfRedBalls probability = new ProbabilityOfRedBalls();
-        float pro = probability.probabilityOfOneMillionTimes(30,50,120);
-        System.out.println("The probability is: " + pro);
+        //float pro = probability.probabilityOfOneMillionTimes(30,50,120);
+        //System.out.println("The probability is: " + pro);
     }
 
     //Comments from Vic: main method for View -- the input and output, and present
@@ -42,4 +49,3 @@ public class HelloSAP {
     }
 
 }
-

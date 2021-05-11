@@ -1,9 +1,9 @@
-package org.vic;
+package org.vic.countoffgame;
 
 import junit.framework.Assert;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
+import org.vic.countoffgame.MyPosition;
+import org.vic.countoffgame.PrintAnswers;
 
 public class MyPositionTest {
 

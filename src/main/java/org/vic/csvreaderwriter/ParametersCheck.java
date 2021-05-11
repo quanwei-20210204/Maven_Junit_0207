@@ -1,4 +1,4 @@
-package org.vic;
+package org.vic.csvreaderwriter;
 
 public class ParametersCheck {
 
