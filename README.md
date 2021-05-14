@@ -75,11 +75,11 @@ http://www.10qianwan.com/articledetail/758025.html
 代码检查 规范？  
 
 Comments from Coach Vic's View on May 10th(10/05)  
-1.Packages  
-2.Test Data File -- put it in the package  
-3.Test Case's iteration  how to make it clear in UT what's expected?  
-  --String resourcePath = getClass().getResource("/").getPath(); 即可 获取resource的文件路径  
-4.  
-5.
+1. Packages  
+2. Test Data File -- put it in the package  
+3. Test Case's iteration  how to make it clear in UT what's expected?  
+   --String resourcePath = getClass().getResource("/").getPath(); to get resource's pathway  
+4. deconstruct the God class to sub-classes  
+5.  
 
 
