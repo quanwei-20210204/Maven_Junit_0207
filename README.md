@@ -80,6 +80,7 @@ Comments from Coach Vic's View on May 10th(10/05)
 3. Test Case's iteration  how to make it clear in UT what's expected?  
    --String resourcePath = getClass().getResource("/").getPath(); to get resource's pathway  
 4. deconstruct the God class to sub-classes  
-5.  
+5. learn more about CSV file's format  
+
 
 
