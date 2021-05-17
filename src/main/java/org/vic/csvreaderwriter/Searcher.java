@@ -11,11 +11,10 @@ public class Searcher {
 
     public List<String> searchString(List<File> sourceFilesList, String keyword){
 
+        Matcher matcher = new Matcher();
         List<String> lineResult = new ArrayList<>();
         List<String> fileLines = new ArrayList<>();
         String lineData = "";
-
-        boolean b = true;
 
         for(int i = 0; i < sourceFilesList.size();i++){
 
@@ -26,11 +25,8 @@ public class Searcher {
             while (iter.hasNext()) {
                 value = iter.next();
 
-                if(b){
+                if(matcher.matchOrNotPseudoCode()){
                     lineResult.add(value);
-                    b = false;
-                }else{
-                    b = true;
                 }
 
             }

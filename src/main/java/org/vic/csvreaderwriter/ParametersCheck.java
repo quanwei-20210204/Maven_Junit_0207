@@ -6,4 +6,8 @@ public class ParametersCheck {
         return cs == null || cs.length() == 0;
     }
 
+    public static void print(String output){
+        System.out.println(output);
+    }
+
 }
