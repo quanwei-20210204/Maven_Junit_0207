@@ -25,7 +25,7 @@ public class Searcher {
             while (iter.hasNext()) {
                 value = iter.next();
 
-                if(matcher.matchOrNotPseudoCode()){
+                if(matcher.isMatchedAccurate(value,keyword)){
                     lineResult.add(value);
                 }
 

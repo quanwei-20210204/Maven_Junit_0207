@@ -82,5 +82,9 @@ Comments from Coach Vic's View on May 10th(10/05)
 4. deconstruct the God class to sub-classes  
 5. learn more about CSV file's format  
 
+## 3-2  0518
+可以指定需要匹配的列  
+
+
 
 

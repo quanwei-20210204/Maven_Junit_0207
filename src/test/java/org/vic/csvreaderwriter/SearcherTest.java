@@ -17,8 +17,8 @@ public class SearcherTest {
         List<File> fileList = new ArrayList<>();
         fileList.add(csvFile);
         Searcher searcher = new Searcher();
-        List<String> testList = searcher.searchString(fileList,"keyword");
-        Assert.assertEquals(5,testList.size());
+        List<String> testList = searcher.searchString(fileList,"Zhang");
+        Assert.assertEquals(1,testList.size());
     }
 
     @Test
