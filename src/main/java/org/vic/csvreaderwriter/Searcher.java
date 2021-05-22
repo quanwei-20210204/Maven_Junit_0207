@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -14,7 +15,6 @@ public class Searcher {
         Matcher matcher = new Matcher();
         List<String> lineResult = new ArrayList<>();
         List<String> fileLines = new ArrayList<>();
-        String lineData = "";
 
         for(int i = 0; i < sourceFilesList.size();i++){
 
@@ -33,14 +33,39 @@ public class Searcher {
 
         }
 
-        /*int StartIndex=0;
-
-        while(parentString.indexOf(childString,StartIndex)!=-1){
-            StartIndex = parentString.indexOf(childString,StartIndex);
-            StartIndex += childString.length();
-            lineResult.add(childString);
-        }*/
         return lineResult;
+    }
+
+    public List<String> searchString(List<File> sourceFilesList, String keyword, String col){
+        Matcher matcher = new Matcher();
+        List<String> lineResult = new ArrayList<>();
+        List<String> fileLines = new ArrayList<>();
+        int colNum = -1;
+        //from column to index number
+        fileLines = readCSVLines(sourceFilesList.get(0));
+        colNum = convertColtoIndex(fileLines.get(0), col);
+
+
+        for(int i = 0; i < sourceFilesList.size();i++){
+
+            fileLines = readCSVLines(sourceFilesList.get(i));
+            Iterator<String> iter = fileLines.listIterator();
+
+
+            String value ="";
+            while (iter.hasNext()) {
+                value = iter.next();
+
+                if(matcher.isMatchedOnCol(value,keyword,colNum)){
+                    lineResult.add(value);
+                }
+
+            }
+
+        }
+
+        return lineResult;
+
     }
 
     public List<String> readCSVLines(File csvFile) {
@@ -57,5 +82,16 @@ public class Searcher {
             System.out.println("wrong at readCSVLines");
         }
         return null;
+    }
+
+    public int convertColtoIndex(String header, String col) {
+        if(header.contains(col)){
+            String[] columnStrings = header.split(",");
+            return Arrays.asList(columnStrings).indexOf(col);
+        }else{
+             System.out.println("no such column.");// throw exception
+            return -1;
+        }
+
     }
 }

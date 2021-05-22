@@ -84,7 +84,7 @@ Comments from Coach Vic's View on May 10th(10/05)
 
 ## 3-2  0518
 可以指定需要匹配的列  
-
+如果没有指定的列，如何 抛出/处理 异常呢？  
 
 
 

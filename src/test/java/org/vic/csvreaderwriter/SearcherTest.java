@@ -22,6 +22,17 @@ public class SearcherTest {
     }
 
     @Test
+    public void searchString_On_Column() {
+        File csvFile = new File("src/test/resources/testcol.csv");
+        List<File> fileList = new ArrayList<>();
+        fileList.add(csvFile);
+        Searcher searcher = new Searcher();
+        List<String> testList = searcher.searchString(fileList,"male","gender");
+        //System.out.println(testList);
+        Assert.assertEquals(2,testList.size());
+    }
+
+    @Test
     public void readCSVLines() {
         File csvFile = new File("src/test/resources/test.csv");
         Searcher searcher = new Searcher();
