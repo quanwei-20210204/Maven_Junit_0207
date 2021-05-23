@@ -85,13 +85,15 @@ public class Searcher {
     }
 
     public int convertColtoIndex(String header, String col) {
-        if(header.contains(col)){
-            String[] columnStrings = header.split(",");
-            return Arrays.asList(columnStrings).indexOf(col);
-        }else{
-             System.out.println("no such column.");// throw exception
-            return -1;
-        }
+
+            if(header.contains(col)){
+                String[] columnStrings = header.split(",");
+                return Arrays.asList(columnStrings).indexOf(col);
+            }else{
+                throw new RuntimeException("no such column");
+                //System.out.println("no such column.");// throw exception
+                //return -1;
+            }
 
     }
 }
